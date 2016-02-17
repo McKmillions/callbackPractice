@@ -111,9 +111,22 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-    //Code Here for uniq
+var uniq = function (arr, cb) {
+    var i, j, cur, found;
+    for (i = arr.length - 1; i >= 0; i--) {
+        cur = arr[i];
+        found = false;
+        for (j = i - 1; !found && j >= 0; j--) {
+            if (cur === arr[j]) {
+                if (i !== j) {
+                    arr.splice(i, 1);
+                }
+                found = true;
+            }
+        }
+    }
+    return cb(arr);
+};
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -129,6 +142,21 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+// var each = function(arr, cb, item) {
+//  cb(arr.indexOf(item));
+// }
+
+// friends.forEach(function (eachName, index){
+// console.log(index + 1 + ". " + eachName); // 1. Mike, 2. Stacy, 3. Andy, 4. Rick​
+// });
+
+var each = function(arr, cb) {
+  for(var i = 0; i < arr.length; i++) {
+    cb(arr[i],i);
+  }
+}
+
+
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -140,7 +168,13 @@ each(names, function(item, indice){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
+var getUserById = function(arr, id, cb) {
+  arr.map(function(obj, index) {
+    if(obj.id === id) {
+      cb(obj);
+    }
+  });
+}
 
 
 
